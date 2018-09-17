@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">The guardian news</string>
+
+    <!-- Text to display in the list when there areNewsArticlescles [CHAR LIMIT=NONE] -->
+    <string name="no_newsarticles">No News available</string>
+
+    <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="no_thumbnail">No thumbnail</string>
+
+
+    <string name="author">Author: </string>
+    <string name="noauthor">Author: Unknown</string>
+
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">News Settings</string>
+
+    <string name="settings_section_label">Order by Section</string>
+    <string name="settings_section_key" translatable="false">section</string>
+    <string name="settings_section_default" translatable="false">@string/settings_order_by_politics_value</string>
+
+
+
+    <!-- Label for order-by magnitude option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_politics_label">Politics</string>
+    <string name="settings_order_by_politics_value" translatable="false">politics</string>
+
+    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_science_label">Science</string>
+    <string name="settings_order_by_science_value" translatable="false">science</string>
+
+    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_society_label">Society</string>
+    <string name="settings_order_by_society_value" translatable="false">society</string>
+
+    <string name="settings_order_by_stage_label">Stage</string>
+    <string name="settings_order_by_stage_value" translatable="false">stage</string>
+
+    <string name="settings_order_by_sport_label">Sport</string>
+    <string name="settings_order_by_sport_value" translatable="false">sport</string>
+</resources>
