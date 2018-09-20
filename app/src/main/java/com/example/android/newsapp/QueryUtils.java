@@ -53,7 +53,6 @@ public final class QueryUtils {
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
         List<NewsArticle> NewsArticles = extractFeatureFromJson(jsonResponse);
@@ -66,7 +65,6 @@ public final class QueryUtils {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Problem building the URL ", e);
         }
         return url;
     }
@@ -87,16 +85,13 @@ public final class QueryUtils {
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
-            //        Log.e(LOG_TAG, "url: " + url);
 
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the News JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -124,7 +119,6 @@ public final class QueryUtils {
 
     private static List<NewsArticle> extractFeatureFromJson(String newsJSON) {
 
-        Log.e(LOG_TAG, "Response from url: " + newsJSON);
 
         if (TextUtils.isEmpty(newsJSON)) {
             return null;
@@ -152,14 +146,18 @@ public final class QueryUtils {
 
                 String url = currentNews.getString("webUrl");
 
-                JSONObject fields=currentNews.getJSONObject("fields");
-
                 Bitmap thumbnailBitmap = null;
 
-                if (fields.has("thumbnail")) {
-                    String thumbnail = fields.getString("thumbnail");
-                    URL urlThumbnail = new URL(thumbnail);
-                    thumbnailBitmap = BitmapFactory.decodeStream(urlThumbnail.openConnection().getInputStream());
+                if (currentNews.has("fields")) {
+
+                    JSONObject fields = currentNews.getJSONObject("fields");
+
+
+                    if (fields.has("thumbnail")) {
+                        String thumbnail = fields.getString("thumbnail");
+                        URL urlThumbnail = new URL(thumbnail);
+                        thumbnailBitmap = BitmapFactory.decodeStream(urlThumbnail.openConnection().getInputStream());
+                    }
                 }
 
                 JSONArray tagsArray = currentNews.getJSONArray("tags");
@@ -174,13 +172,11 @@ public final class QueryUtils {
                 NewsArticle NewsArticle = new NewsArticle(title, section, date, author, url,thumbnailBitmap);
                 NewsArticles.add(NewsArticle);
             }
-            Log.e(LOG_TAG, "display"+NewsArticles);
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

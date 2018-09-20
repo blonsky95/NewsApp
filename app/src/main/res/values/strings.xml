@@ -18,6 +18,8 @@
 
     <!-- Text to display in the list when there areNewsArticlescles [CHAR LIMIT=NONE] -->
     <string name="no_newsarticles">No News available</string>
+    <string name="search"><i>Search</i></string>
+
 
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet_connection">No internet connection.</string>
